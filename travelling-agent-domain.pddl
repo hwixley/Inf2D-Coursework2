@@ -3,16 +3,15 @@
 
     (:types
     	city		; represented by a node on the map
-      bus     ;
+        bus         ;
     	car			;
-		  agent		;
-		  plane		;
+		agent		;
+		plane		;
     )
 
     (:constants
         ;; You should not need to add any additional constants
         Agent - agent
-        busCost carCost planeCost - integer
     )
 
     (:predicates
@@ -23,34 +22,32 @@
 		    (air	?c1 - city ?c2 - city)	; city ?c1 and city ?c2 are connected by a single air route (?c1 -> ?c2)
 
 		    (visited 			?city - city)	; the agent has visited city ?c
-        (cost         ?cost - integer))  ;
-
-    (:functions (total-cost ?cost))
+            (cost         ?cost - integer))  ;
 
 
     (:action ride
       :parameters (?from ?to - city)
 
       :precondition (and
-  	  				      (agentAt ?from)
-  					        (road ?from ?to))
+  	  		        (agentAt ?from)
+  			        (road ?from ?to))
 
       :effect (and
-  	  		    (not (agentAt ?from))
-  			      (agentAt ?to)))
+  	  		  (not (agentAt ?from))
+  			  (agentAt ?to)))
 
     (:action drive
       :parameters (?from ?to - city)
 
       :precondition (and
-	  				        (agentAt ?from)
+	  		        (agentAt ?from)
           	        (carAt ?from)
-			              (road ?from ?to))
+			        (road ?from ?to))
 
       :effect (and
-	  		      (not (agentAt ?from))
-			        (not (carAt ?from))
-			        (agentAt ?to)
+	  		  (not (agentAt ?from))
+			  (not (carAt ?from))
+			  (agentAt ?to)
           	  (carAt ?to)))
 
 
@@ -58,21 +55,21 @@
       :parameters (?from ?to - city)
 
       :precondition (and
-	  				        (agentAt ?from)
-					          (air ?from ?to))
+	  				(agentAt ?from)
+					(air ?from ?to))
 
       :effect (and
-	  		      (not (agentAt ?from))
-			        (agentAt ?to)))
+	  		  (not (agentAt ?from))
+			  (agentAt ?to)))
 
 
 	(:action visit
       :parameters (?c - city)
 
       :precondition (and
-	  				        (agentAt ?c)
-					          (not (visited ?c)))
+	  				(agentAt ?c)
+					(not (visited ?c)))
 
       :effect (and
-			        (visited ?c)))
+			  (visited ?c)))
 )

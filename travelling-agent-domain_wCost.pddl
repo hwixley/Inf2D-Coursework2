@@ -22,9 +22,41 @@
 		    (air	?c1 - city ?c2 - city)	; city ?c1 and city ?c2 are connected by a single air route (?c1 -> ?c2)
 
 		    (visited 			?city - city)	; the agent has visited city ?c
+            (carRental          ?city - city)   ; there is a car rental service at city ?c
+            (carRented          ?city - city)   ; a car was rented from the car rental service at city ?c
+            (carReturned)                       ; a boolean representing if the rented car has been returned
             )
 
-    (:functions (total-cost) (budget) (maxBus) (maxCar) (maxPlane))
+    (:functions (total-cost) (budget) (maxBus) (maxCar) (maxPlane) (maxHire))
+
+
+    (:action returnCar
+      :parameters (?c - city)
+
+      :precondition (and
+                    (carRented ?c)
+                    (agentAt ?c)
+                    (carAt ?c)
+                    (carRental ?c))
+
+      :effect (and
+              (not (carAt ?c))
+              (not (carRented ?c))))
+
+
+    (:action hire
+      :parameters (?c - city)
+
+      :precondition (and
+                    (agentAt ?c)
+                    (carRental ?c)
+                    (not (carRented ?c))
+                    (>= (maxHire) (total-cost)))
+
+      :effect (and
+              (carAt ?c)
+              (increase (total-cost) 2)
+              (carRented ?c)))
 
 
     (:action ride
@@ -39,6 +71,7 @@
   	  		  (not (agentAt ?from))
   			  (agentAt ?to)
               (increase (total-cost) 5)))
+
 
     (:action drive
       :parameters (?from ?to - city)
