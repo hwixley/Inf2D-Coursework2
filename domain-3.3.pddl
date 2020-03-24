@@ -1,4 +1,4 @@
-(define (domain travelling_agent_cost)
+(define (domain travelling_agent_hire)
     (:requirements :typing :adl :fluents :equality)
 
     (:types

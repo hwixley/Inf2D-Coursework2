@@ -1,9 +1,9 @@
-(define (domain travelling_agent)
-    (:requirements :adl :typing :equality)
+(define (domain travelling_agent_bus)
+    (:requirements :typing :adl :fluents :equality)
 
     (:types
     	city		; represented by a node on the map
-        bus         ;
+        bus     ;
     	car			;
 		agent		;
 		plane		;
@@ -21,26 +21,26 @@
 		    (road	?c1 - city ?c2 - city)	; city ?c1 and city ?c2 are connected by a single road
 		    (air	?c1 - city ?c2 - city)	; city ?c1 and city ?c2 are connected by a single air route (?c1 -> ?c2)
 
-		    (visited 			?city - city)	; the agent has visited city ?c
-            (cost         ?cost - integer))  ;
+		    (visited 			?city - city))	; the agent has visited city ?c
 
 
     (:action ride
       :parameters (?from ?to - city)
 
       :precondition (and
-  	  		        (agentAt ?from)
-  			        (road ?from ?to))
+  	  				(agentAt ?from)
+  					(road ?from ?to))
 
       :effect (and
   	  		  (not (agentAt ?from))
   			  (agentAt ?to)))
 
+
     (:action drive
       :parameters (?from ?to - city)
 
       :precondition (and
-	  		        (agentAt ?from)
+	  				(agentAt ?from)
           	        (carAt ?from)
 			        (road ?from ?to))
 
@@ -68,7 +68,7 @@
 
       :precondition (and
 	  				(agentAt ?c)
-					(not (visited ?c)))
+				    (not (visited ?c)))
 
       :effect (and
 			  (visited ?c)))

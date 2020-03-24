@@ -1,0 +1,80 @@
+Task 3
+
+3.1) Added action of riding a bus
+
+START: Agent and Car in E
+GOAL: Visit D, Agent and Car in E
+
+0: DRIVE E A
+1: FLY A C
+2: RIDE C D
+3: VISIT D
+4: RIDE D C
+5: FLY C B
+6: FLY B A
+7: DRIVE A E
+
+
+3.2) Added semantic of actions having a cost, and agent with a budget
+
+START: Agent and Car in E
+GOAL: Visit B and D
+
+Budget = 15	Cost = 8
+
+0: DRIVE E A
+1: DRIVE A I
+2: DRIVE I H
+3: DRIVE H B
+4: VISIT B
+5: DRIVE B H
+6: DRIVE H G
+7: DRIVE G F
+8: DRIVE F D
+9: VISIT D
+
+Budget = 30	Cost = 30
+
+0: DRIVE E A
+1: FLY A B
+2: VISIT B
+3: FLY B A
+4: DRIVE A I
+5: DRIVE I H
+6: DRIVE H G
+7: DRIVE G F
+8: RIDE F D
+9: VISIT D
+
+Budget = 40	Cost = 31
+
+0: DRIVE E A
+1: FLY A C
+2: RIDE C D
+3: VISIT D
+4: RIDE D C
+5: FLY C B
+6: VISIT B
+
+
+3.3) Added action of hiring a car given the agent's car was totalled
+
+START: Agent in E
+GOAL: Visit D and Agent in E
+
+Cost = 38
+
+0: HIRE E
+1: DRIVE E A
+2: FLY A C
+3: HIRE C
+4: DRIVE C D
+5: VISIT D
+6: DRIVE D C
+7: RETURNCAR C
+8: FLY C B
+9: FLY B A
+10: DRIVE A E
+11: RETURNCAR E
+
+

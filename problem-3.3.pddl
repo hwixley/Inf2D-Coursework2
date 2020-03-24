@@ -1,5 +1,5 @@
 (define (problem travelling_33)
-		(:domain travelling_agent_cost)
+		(:domain travelling_agent_hire)
 		(:objects
 			Agent - agent
 			Car - car
