@@ -11,7 +11,8 @@
 			(road h b) (road b h) (road h g) (road g h) (road g f) (road f g)
 			(road f c) (road c f) (road f d) (road d f) (road c d) (road d c)
 			(air a b) (air b a) (air c b) (air a c)
-			(= (budget) 15) (= (total-cost) 0) (= (testBudget) 0)
+			(= (budget) 15) (= (total-cost) 0)
+			(= (maxBus) 10) (= (maxCar) 14) (= (maxPlane) 5)
 
 		)
 

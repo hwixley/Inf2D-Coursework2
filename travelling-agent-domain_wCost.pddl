@@ -1,5 +1,5 @@
 (define (domain travelling_agent_cost)
-    (:requirements :fluents :adl :typing :equality)
+    (:requirements :typing :adl :fluents :equality)
 
     (:types
     	city		; represented by a node on the map
@@ -24,7 +24,7 @@
 		    (visited 			?city - city)	; the agent has visited city ?c
             )
 
-    (:functions (total-cost) (budget) (testBudget))
+    (:functions (total-cost) (budget) (maxBus) (maxCar) (maxPlane))
 
 
     (:action ride
@@ -33,14 +33,12 @@
       :precondition (and
   	  				(agentAt ?from)
   					(road ?from ?to)
-                    (= (testBudget) (total-cost))
-                    (increase (testBudget) 5)
-                    (<= (testBudget) (budget)))
+                    (>= (maxBus) (total-cost)))
 
       :effect (and
   	  		  (not (agentAt ?from))
   			  (agentAt ?to)
-              (= (total-cost) (testBudget))))
+              (increase (total-cost) 5)))
 
     (:action drive
       :parameters (?from ?to - city)
@@ -49,16 +47,14 @@
 	  				(agentAt ?from)
           	        (carAt ?from)
 			        (road ?from ?to)
-                    (= (testBudget) (total-cost))
-                    (increase (testBudget) (1))
-                    (<= (testBudget) (budget)))
+                    (>= (maxCar) (total-cost)))
 
       :effect (and
 	  		  (not (agentAt ?from))
 			  (not (carAt ?from))
 			  (agentAt ?to)
           	  (carAt ?to)
-              (= (total-cost) (testBudget))))
+              (increase (total-cost) 1)))
 
 
 	(:action fly
@@ -67,14 +63,12 @@
       :precondition (and
 	  				(agentAt ?from)
 					(air ?from ?to)
-                    (= (testBudget) (total-cost))
-                    (increase (testBudget) 10)
-                    (<= (testBudget) (budget)))
+                    (>= (maxPlane) (total-cost)))
 
       :effect (and
 	  		  (not (agentAt ?from))
 			  (agentAt ?to)
-              (= (total-cost) (testBudget))))
+              (increase (total-cost) 10)))
 
 
 	(:action visit
