@@ -47,21 +47,12 @@ Goal state = car and agent at E, and agent has not visited B
 Upon finding a path in a backwards state space search, the path must be reversed
 and negated where appropriate.
 	eg. Drive(A,B) -> Drive(B,A)  and  ¬Visit(B) -> Visit(B)
-	**Parameters reversed for dynamic actions, state negation for static actions.
+	**Parameters reversed for dynamic actions, state negated for static actions.
 
 So the solution is:
 0: Drive(E, A)
 1: Fly(A, B)
 2: Visit(B)
-
-POSSIBLE PATHS
-1) E A B
-2) E A C B
-3) E A C D F G H B
-4) E A C F G H B
-5) E A I H B
-6) E A I H G F D C B
-7) E A I H G F C B
 
 
 PART 4
