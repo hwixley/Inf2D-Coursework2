@@ -66,30 +66,23 @@ First we must identify possible preferences we can cater for;
 3) Ease/comfort of the journey (number of transport changes)
 4) Environmental factor (emission heuristic)
 
-All of these preferences will have to be interpreted as their own metric values
-within the planner in order for the program to be able to compare different 
-route costs, and find the optimal preferred path.
+All these preferences will have to be interpreted as their own metric values
+within the planner for the program to be able to compare different route costs 
+and find the optimal preferred path.
 
 Now we must create a way in which the traveller can prioritize their preferences.
-This could be done by either allowing a customer to choose a single preference
-or rather using all preferences ordered by importance.
+This could be done by creating a prioritized list of preferences, we can then use 
+this prioritization to calculate the final-search-metric.
 
-Depending on which way the traveller prioritizes their preferences affects how
-the final search metric is evaluated.
+Calculating the final-search-metric given prioritized preferences (A B C D):
+Given we must optimise the search on 4 different preferences with different values 
+of importance, we must create an equation which adds appropriate weightings to 
+represent this prioritization:
 
-Single preference (A):
-The final search metric is equated to preference A's metric value as this is all 
-the system needs to account for and optimise in the search.
-final-search-metric = metric_A
-
-All preferences ordered by importance (A B C D):
-Given we have to optimise the search on 4 different preferences with different
-values of importance, we must create an equation which adds appropriate 
-weightings to represent this prioritization:
 final-search-metric = 4*metric_A + 3*metric_B + 2*metric_C + metric_D
 
-Finally, given we have succesffully implemented the various preference metrics
-within the domain, all we have to do is add the final search metric into the
+Finally, given we have succesfully implemented the various preference metrics
+within the domain, all we must do is add the final search metric into the
 :metric section of the problem definition.
 
   (:metric minimize (final-search-metric))
