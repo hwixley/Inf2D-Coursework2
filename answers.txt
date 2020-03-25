@@ -2,9 +2,47 @@ PART 1
 
 Task 1.1
 
+PREDICATES:
+Road(A, B)        -- A and B are connected by a directed road A=>B
+Air(A, B)         -- A and B are connected by a directed air route A=>B
+Agent.At(A)       -- The agent is at A
+Car.At(A)	  -- The car is at A
+Agent.Visited(A)  -- The agent has visited A
+
+INITIAL STATE:
+Agent.At(E) ∧ Car.At(E) ∧ ¬Agent.Visited(D)
+
+GOAL STATE:
+Agent.At(E) ∧ Agent.Visited(D)
+
+
 Task 1.2
 
+Drive(A, B) 	-- Drive from A to B
+PRECON: Agent.At(A) ∧ Car.At(A) ∧ Road(A, B)
+EFFECT: ¬Agent.At(A) ∧ ¬Car.At(A) ∧ Agent.At(B) ∧ Car.At(B)
+
+Fly(A, B) 	-- Fly from A to B
+PRECON: Agent.At(A) ∧ Air(A, B)
+EFFECT: ¬Agent.At(A) ∧ Agent.At(B)
+
+Visit(A) 	-- Visit A
+PRECON: Agent.At(A) ∧ ¬Agent.Visited(A)
+EFFECT: Agent.Visited(A)
+
+
 Task 1.3
+
+BACKWARD STATE SPACE SEARCH
+Algorithm which starts at the goal state and ends at the initial state.
+
+BACKWARDS STEPS
+Initial state = agent at B, car at A
+Goal state = car and agent at E, and agent has visited B
+
+0: Visit(B)	-- Action which completes part of the goal state
+1: Fly(B, A)	-- Action which brings our agent closer to the goal state
+2: Drive(A, E) 	-- Action which brings our agent to the complete goal state
 
 
 PART 4
