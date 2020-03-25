@@ -37,10 +37,10 @@ BACKWARD STATE SPACE SEARCH
 Algorithm which starts at the goal state and ends at the initial state.
 
 BACKWARDS STEPS
-Initial state = agent at B, car at A
-Goal state = car and agent at E, and agent has visited B
+Initial state = agent at B, car at A, agent has visited B
+Goal state = car and agent at E, and agent has not visited B
 
-0: Visit(B)	-- Action which completes part of the goal state
+0: ¬Visit(B)	-- Action which completes part of the goal state
 1: Fly(B, A)	-- Action which brings our agent closer to the goal state
 2: Drive(A, E) 	-- Action which brings our agent to the complete goal state
 
@@ -57,3 +57,39 @@ POSSIBLE PATHS
 
 
 PART 4
+
+Creating an effective planner which account's for a traveller's preferences:
+
+First we must identify possible preferences we can cater for;
+1) Monetary cost (cost heuristic)
+2) Length of the journey (distance heuristic)
+3) Ease/comfort of the journey (number of transport changes)
+4) Environmental factor (emission heuristic)
+
+All of these preferences will have to be interpreted as their own metric values
+within the planner in order for the program to be able to compare different 
+route costs, and find the optimal preferred path.
+
+Now we must create a way in which the traveller can prioritize their preferences.
+This could be done by either allowing a customer to choose a single preference
+or rather using all preferences ordered by importance.
+
+Depending on which way the traveller prioritizes their preferences affects how
+the final search metric is evaluated.
+
+Single preference (A):
+The final search metric is equated to preference A's metric value as this is all 
+the system needs to account for and optimise in the search.
+final-search-metric = metric_A
+
+All preferences ordered by importance (A B C D):
+Given we have to optimise the search on 4 different preferences with different
+values of importance, we must create an equation which adds appropriate 
+weightings to represent this prioritization:
+final-search-metric = 4*metric_A + 3*metric_B + 2*metric_C + metric_D
+
+Finally, given we have succesffully implemented the various preference metrics
+within the domain, all we have to do is add the final search metric into the
+:metric section of the problem definition.
+
+  (:metric minimize (final-search-metric))

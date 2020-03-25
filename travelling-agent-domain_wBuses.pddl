@@ -1,5 +1,5 @@
-(define (domain travelling_agent)
-    (:requirements :adl :typing :equality)
+(define (domain travelling_agent_bus)
+    (:requirements :typing :adl :fluents :equality)
 
     (:types
     	city		; represented by a node on the map
@@ -24,11 +24,23 @@
 		    (visited 			?city - city))	; the agent has visited city ?c
 
 
+    (:action ride
+      :parameters (?from ?to - city)
+
+      :precondition (and
+  	  				(agentAt ?from)
+  					(road ?from ?to))
+
+      :effect (and
+  	  		  (not (agentAt ?from))
+  			  (agentAt ?to)))
+
+
     (:action drive
       :parameters (?from ?to - city)
 
       :precondition (and
-	  		        (agentAt ?from)
+	  				(agentAt ?from)
           	        (carAt ?from)
 			        (road ?from ?to))
 
@@ -56,7 +68,7 @@
 
       :precondition (and
 	  				(agentAt ?c)
-					(not (visited ?c)))
+				    (not (visited ?c)))
 
       :effect (and
 			  (visited ?c)))
