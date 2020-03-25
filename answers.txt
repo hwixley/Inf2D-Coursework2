@@ -44,5 +44,16 @@ Goal state = car and agent at E, and agent has visited B
 1: Fly(B, A)	-- Action which brings our agent closer to the goal state
 2: Drive(A, E) 	-- Action which brings our agent to the complete goal state
 
+PATH = E A B
+
+POSSIBLE PATHS
+1) E A B
+2) E A C B
+3) E A C D F G H B
+4) E A C F G H B
+5) E A I H B
+6) E A I H G F D C B
+7) E A I H G F C B
+
 
 PART 4
