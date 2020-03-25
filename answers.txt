@@ -3,7 +3,8 @@ PART 1
 Task 1.1
 
 PREDICATES:
-Road(A, B)        -- A and B are connected by a directed road A=>B
+Road(A, B)        -- A and B are connected by a road 
+		  **Road(A, B) implies Road(B, A) (roads are bidirectional routes)
 Air(A, B)         -- A and B are connected by a directed air route A=>B
 Agent.At(A)       -- The agent is at A
 Car.At(A)	  -- The car is at A
@@ -57,7 +58,7 @@ So the solution is:
 
 PART 4
 
-Creating an effective planner which account's for a traveller's preferences:
+CREATING AN EFFECTIVE PLANNER WHICH ACCOUNTS FOR A TRAVELLER'S PREFERENCES:
 
 First we must identify possible preferences we can cater for;
 1) Monetary cost (cost heuristic)
