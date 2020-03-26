@@ -23,8 +23,7 @@
 
 		    (visited 			?city - city)	; the agent has visited city ?c
             (carRental          ?city - city)   ; there is a car rental service at city ?c
-            (carRented          ?city - city)   ; a car was rented from the car rental service at city ?c
-            (carReturned)                       ; a boolean representing if the rented car has been returned
+            (carRented          ?city - city)   ; a car is currently being rented from the car rental service at city ?c
             )
 
     (:functions (total-cost) (budget) (maxBus) (maxCar) (maxPlane) (maxHire))
@@ -51,7 +50,7 @@
                     (agentAt ?c)
                     (carRental ?c)
                     (not (carRented ?c))
-                    (>= (maxHire) (total-cost)))
+                    (>= (maxHire) (total-cost)))    ; checks if the agent has enough budget left to hire a car
 
       :effect (and
               (carAt ?c)
@@ -65,7 +64,7 @@
       :precondition (and
   	  				(agentAt ?from)
   					(road ?from ?to)
-                    (>= (maxBus) (total-cost)))
+                    (>= (maxBus) (total-cost))) ; checks if the agent has enough budget left to buy a bus ticket
 
       :effect (and
   	  		  (not (agentAt ?from))
@@ -80,7 +79,7 @@
 	  				(agentAt ?from)
           	        (carAt ?from)
 			        (road ?from ?to)
-                    (>= (maxCar) (total-cost)))
+                    (>= (maxCar) (total-cost))) ; checks if the agent has enough budget left to drive their car
 
       :effect (and
 	  		  (not (agentAt ?from))
@@ -96,7 +95,7 @@
       :precondition (and
 	  				(agentAt ?from)
 					(air ?from ?to)
-                    (>= (maxPlane) (total-cost)))
+                    (>= (maxPlane) (total-cost)))   ; checks if the agent has enough budget left to buy a plane ticket
 
       :effect (and
 	  		  (not (agentAt ?from))

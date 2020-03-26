@@ -3,7 +3,7 @@
 
     (:types
     	city		; represented by a node on the map
-        bus     ;
+        bus         ;
     	car			;
 		agent		;
 		plane		;
@@ -33,7 +33,7 @@
       :precondition (and
   	  				(agentAt ?from)
   					(road ?from ?to)
-                    (>= (maxBus) (total-cost)))
+                    (>= (maxBus) (total-cost))) ; checks if the agent has enough budget left to buy a bus ticket
 
       :effect (and
   	  		  (not (agentAt ?from))
@@ -48,7 +48,7 @@
 	  				(agentAt ?from)
           	        (carAt ?from)
 			        (road ?from ?to)
-                    (>= (maxCar) (total-cost)))
+                    (>= (maxCar) (total-cost))) ; checks if the agent has enough budget left to drive their car
 
       :effect (and
 	  		  (not (agentAt ?from))
@@ -64,7 +64,7 @@
       :precondition (and
 	  				(agentAt ?from)
 					(air ?from ?to)
-                    (>= (maxPlane) (total-cost)))
+                    (>= (maxPlane) (total-cost)))   ; checks if the agent has enough budget left to buy a plane ticket
 
       :effect (and
 	  		  (not (agentAt ?from))
