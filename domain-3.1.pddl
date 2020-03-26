@@ -2,11 +2,11 @@
     (:requirements :typing :adl :fluents :equality)
 
     (:types
-    	city		; represented by a node on the map
-        bus     ;
-    	car			;
-		agent		;
-		plane		;
+       city		; represented by a node on the map
+       bus      ;
+       car	    ;
+	   agent	;
+	   plane	;
     )
 
     (:constants
