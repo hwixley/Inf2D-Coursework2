@@ -38,8 +38,8 @@ BACKWARD STATE SPACE SEARCH
 Algorithm which starts at the goal state and ends at the initial state.
 
 BACKWARDS STEPS
-Initial state = agent at B, car at A, agent has visited B
-Goal state = car and agent at E, and agent has not visited B
+Initial state = Agent.At(B) ∧ Car.At(A) ∧ Agent.Visited(B)
+Goal state = Agent.At(E) ∧ Car.At(E) ∧ ¬Agent.Visited(B)
 
 0: ¬Visit(B)	-- Action which completes part of the goal state
 1: Fly(B, A)	-- Action which brings our agent closer to the goal state
@@ -67,22 +67,21 @@ First we must identify possible preferences we can cater for;
 4) Environmental factor (emission heuristic)
 
 All these preferences will have to be interpreted as their own metric values
-within the planner for the program to be able to compare different route costs 
-and find the optimal preferred path.
+within the planner using heuristics in order to compare preference-based route 
+costs.
 
-Now we must create a way in which the traveller can prioritize their preferences.
-This could be done by creating a prioritized list of preferences, we can then use 
-this prioritization to calculate the final-search-metric.
+In order for a traveller to prioritize their preferences, we could allow them to
+create a custom prioritized preference list. We can then use this prioritization 
+to calculate the final-search-metric.
 
-Calculating the final-search-metric given prioritized preferences (A B C D):
-Given we must optimise the search on 4 different preferences with different values 
-of importance, we must create an equation which adds appropriate weightings to 
-represent this prioritization:
+Given prioritized preferences (A,B,C,D) we must be able to optimise the search
+appropriately. In order to do this we must equate the final-search-metric in a
+way which adds appropriate weightings to the different prioritized preference
+metrics:
 
 final-search-metric = 4*metric_A + 3*metric_B + 2*metric_C + metric_D
 
-Finally, given we have succesfully implemented the various preference metrics
-within the domain, all we must do is add the final search metric into the
-:metric section of the problem definition.
+Finally, all we must do is add the final search metric into the :metric section 
+of the problem definition.
 
   (:metric minimize (final-search-metric))
